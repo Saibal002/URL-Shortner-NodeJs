@@ -3,137 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Shortener</title>
+    <title>URL Shortener | Dark Glass</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    
     <style>
         body {
-            font-size: medium;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #333;
-        }
-
-        h1 {
-            color: #0056b3;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        input[type="url"] {
-            width: 300px;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #007bff;
+            /* Deep Space Gradient */
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            font-family: 'Outfit', sans-serif;
             color: #fff;
+        }
+
+        /* The Glassmorphism Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 16px;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Inputs */
+        .form-control {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        .form-control:focus {
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border-color: #0dcaf0;
+            box-shadow: 0 0 15px rgba(13, 202, 240, 0.3);
+        }
+        .input-group-text {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        /* Remove default input placeholder opacity */
+        ::placeholder { color: rgba(255, 255, 255, 0.5) !important; }
+
+        /* Neon Button */
+        .btn-neon {
+            background: linear-gradient(45deg, #00d2ff 0%, #3a7bd5 100%);
             border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            color: white;
+            font-weight: 700;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-neon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.6);
+            color: white;
         }
 
-        button:hover {
-            background-color: #0056b3;
-        }
+        /* Glass Table */
+       /* Glass Table - FIXED */
+.table {
+    --bs-table-bg: transparent;  /* <--- This removes the white background */
+    --bs-table-color: #e0e0e0;
+    color: #e0e0e0;
+    margin-bottom: 0;
+}
 
-        p {
-            margin: 20px 0;
-            font-weight: bold;
-        }
+.table thead th {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #0dcaf0; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+}
 
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
+.table tbody tr {
+    background: transparent; /* Ensure rows are transparent */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background 0.3s;
+}
 
-        a:hover {
-            text-decoration: underline;
-        }
+.table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.08); 
+}
 
-        table {
-            width: 80%;
-            margin-top: 20px;
-            border-collapse: collapse;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+.table td {
+    vertical-align: middle;
+    border: none;
+}
 
-        th, td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            text-align: center;
-        }
+        /* Links */
+        a { color: #0dcaf0; text-decoration: none; transition: 0.3s; }
+        a:hover { color: #fff; text-shadow: 0 0 10px #0dcaf0; }
 
-        th {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f0c29; }
+        ::-webkit-scrollbar-thumb { background: #3a7bd5; border-radius: 4px; }
     </style>
 </head>
 <body>
-    <h1>URL Shortener</h1>
 
-    <% if (locals.id) { %>
-        <p>URL Generated: <a href="http://localhost:8001/url/<%= id %>">http://localhost:8001/url/<%= id %></a></p>
-    <% } %>
+    <nav class="navbar navbar-expand-lg navbar-dark mb-5 fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">
+                <span style="color: #0dcaf0;">⚡</span> URL Shortener
+            </a>
+        </div>
+    </nav>
 
-    <div>
-        <form method="POST" action="/url">
-            <label for="url">Enter Your Original URL</label>
-            <input type="url" id="url" name="url" placeholder="http://example.com" required/>
-            <button type="submit">GENERATE</button>
-        </form>
-    </div>
+    <div style="height: 80px;"></div>
 
-    <div>
-        <% if (locals.urls && locals.urls.length > 0) { %>
-            <table>
-                <thead>
-                    <tr>
-                        <th>S.no</th>
-                        <th>ShortID</th>
-                        <th>Redirect</th>
-                        <th>Clicks</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% urls.forEach((url, index) => { %>
-                        <tr>
-                            <td><%= index + 1 %></td>
-                            <td><a href="http://localhost:8001/url/<%= url.shortId %>"><%= url.shortId %></a></td>
-                            <td><a href="<%= url.originalUrl %>"><%= url.originalUrl %></a></td>
-                            <td><%= url.clicks %></td>
-                        </tr>
-                    <% }) %>
-                </tbody>
-            </table>
+    <div class="container col-lg-8">
+        
+        <% if (locals.id) { %>
+            <div class="glass-card p-3 mb-4 d-flex align-items-center justify-content-between fade show">
+                <div class="text-white">
+                    <strong class="text-success">✨ Ready!</strong> 
+                    <span class="ms-2 opacity-75">Your link:</span>
+                    <a href="http://localhost:8001/url/<%= id %>" class="ms-2 fw-bold" id="generatedLink">http://localhost:8001/url/<%= id %></a>
+                </div>
+                <button class="btn btn-sm btn-outline-light rounded-pill px-3" onclick="copyToClipboard('generatedLink')">
+                    Copy
+                </button>
+            </div>
         <% } %>
+
+        <div class="glass-card mb-5 p-5 text-center">
+            <h1 class="mb-2 fw-bold display-6">Shorten Your Links</h1>
+            <p class="text-white-50 mb-4">Paste any long URL below to get a sleek, short link.</p>
+            
+            <form method="POST" action="/url" class="row g-3 justify-content-center">
+                <div class="col-md-9">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text">🔗</span>
+                        <input 
+                            type="url" 
+                            class="form-control" 
+                            name="url" 
+                            placeholder="https://super-long-website-address.com/..." 
+                            required
+                        >
+                    </div>
+                </div>
+                <div class="col-md-3 d-grid">
+                    <button type="submit" class="btn btn-neon btn-lg">Shorten It</button>
+                </div>
+            </form>
+        </div>
+
+        <% if (locals.urls && locals.urls.length > 0) { %>
+            <div class="d-flex justify-content-between align-items-center mb-3 px-2">
+                <h5 class="fw-bold m-0 text-white"><i class="bi bi-clock-history me-2"></i>Recent Activity</h5>
+                <span class="badge bg-dark border border-secondary text-white-50"><%= urls.length %> Links</span>
+            </div>
+
+            <div class="glass-card overflow-hidden">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="ps-4 py-3">#</th>
+                                <th scope="col" class="py-3">Short Link</th>
+                                <th scope="col" class="py-3">Original URL</th>
+                                <th scope="col" class="text-center py-3">Clicks</th>
+                                <th scope="col" class="text-center py-3">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% urls.forEach((url, index) => { %>
+                                <tr>
+                                    <td class="ps-4 text-white-50"><%= index + 1 %></td>
+                                    <td>
+                                        <a href="http://localhost:8001/url/<%= url.shortId %>" id="link-<%= index %>" class="fw-bold">
+                                            <%= url.shortId %>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div class="text-truncate text-white-50" style="max-width: 250px;">
+                                            <%= url.redirectURL %>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge bg-dark border border-secondary text-info rounded-pill px-3">
+                                            <%= url.visitHistory.length %>
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-outline-light rounded-circle" style="width: 32px; height: 32px; padding: 0;" onclick="copyFullLink('http://localhost:8001/url/<%= url.shortId %>')" title="Copy Link">
+                                            📋
+                                        </button>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <% } %>
+
+        <footer class="text-center mt-5 text-white-50 small">
+            <p>&copy; 2026 URL Shortener. Crafted with Glassmorphism.</p>
+        </footer>
+
     </div>
+
+    <script>
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => alert("Link copied to clipboard! 🚀"));
+        }
+
+        function copyFullLink(link) {
+            navigator.clipboard.writeText(link).then(() => alert("Link copied to clipboard! 🚀"));
+        }
+    </script>
 </body>
 </html>
